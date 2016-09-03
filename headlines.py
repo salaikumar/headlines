@@ -1,6 +1,8 @@
 # Feed parser library
 import feedparser
 from  flask import Flask
+from  flask import render_template
+from  flask import request
 headlines = Flask(__name__)
 
 # BBC_FEED_URL = "http://feeds.bbci.co.uk/news/rss.xml"
@@ -11,21 +13,16 @@ RSS_FEEDS = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
  'iol': 'http://www.iol.co.za/cmlink/1.640'}
 
 # Parse the BBC Rss feeds and use it
-@headlines.route("/")
-@headlines.route("/<publisher>")
-def get_news(publisher='bbc'):
+@headlines.route("/",methods=['GET','POST'])
+def get_news():
+    # query = request.args.get("publisher")
+    query = request.form.get("publisher")
+    if not query or query.lower() not in RSS_FEEDS:
+            publisher  = "bbc"
+    else:
+            publisher = query.lower()
     feed = feedparser.parse(RSS_FEEDS[publisher])
-    first_article = feed['entries'][0]
-    return """
-        <html>
-            <body>
-                <b> {0} </b> <br/>
-                <i> {1} </i>
-                <p> {2} </p>
-            </body>
-        </html>
-    """.format(first_article.get("title"),first_article.get("published"), first_article.get("summary"))
-
-
+    return render_template("home.html",
+                            articles=feed['entries'])
 if __name__ == '__main__':
     headlines.run(port=5000, debug=True)
