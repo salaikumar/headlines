@@ -12,21 +12,8 @@ RSS_FEEDS = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
 
 # Parse the BBC Rss feeds and use it
 @headlines.route("/")
-@headlines.route("/bbc")
-def bbc():
-    return get_news('bbc')
-
-# cnn
-@headlines.route("/cnn")
-def cnn():
-    return get_news('cnn')
-
-#iol
-@headlines.route("/iol")
-def iol():
-    return get_news('iol')
-
-def get_news(publisher):
+@headlines.route("/<publisher>")
+def get_news(publisher='bbc'):
     feed = feedparser.parse(RSS_FEEDS[publisher])
     first_article = feed['entries'][0]
     return """
