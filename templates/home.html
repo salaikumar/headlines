@@ -3,13 +3,12 @@
    <title>Headlines</title>
   </head>
   <body>
-    <form class="" action="" method="get">
+    <form class="" action="/" method="post">
       <input type="text" name="publisher" value="" placeholder="search">
       <input type="submit" name="submit" value="submit">
     </form>
     <h1>Headlines</h1>
     {% for  article in articles %}
-      <!-- <b>{{article.title}}</b><br /> -->
       <b><a href="{{article.link}}">{{article.title}}</a></b><br />
       <i>{{article.published}}</i><br />
       <p>{{article.summary}}</p>
