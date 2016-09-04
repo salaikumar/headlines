@@ -3,11 +3,19 @@
    <title>Headlines</title>
   </head>
   <body>
+    <h1>Headlines</h1>
+    <h2>Current weather</h2>
+    <form class="" action="" method="post">
+      <input type="text" name="city" value="" placeholder="Choose the city">
+      <input type="submit" name="submit" value="submit">
+    </form>
+    <p>City: <b>{{weather.city}}</b></p>
+    <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
     <form class="" action="/" method="post">
       <input type="text" name="publisher" value="" placeholder="search">
       <input type="submit" name="submit" value="submit">
     </form>
-    <h1>Headlines</h1>
+    <h1>What's going on the world?</h1>
     {% for  article in articles %}
       <b><a href="{{article.link}}">{{article.title}}</a></b><br />
       <i>{{article.published}}</i><br />
