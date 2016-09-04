@@ -1,28 +1,80 @@
 <html>
   <head>
    <title>Headlines</title>
+   <!-- css tag -->
+   <style media="screen">
+     html{
+          font-family: "Helvetica";
+          background: white;
+        }
+    body{
+          background: lightgrey;
+          max-width: 900px;
+          margin: 0 auto;
+       }
+    #header{
+          padding-top:5;
+          padding-left: 10;
+          background: lightsteelblue;
+    }
+    #inner-header{
+      padding-left: 10;
+    }
+    #main{
+      padding-left: 10;
+    }
+    /* input elements styling*/
+    input[type="text"], select {
+      color: grey;
+      border: 1px solid lightsteelblue;
+      height: height: 30px;
+      line-height:15px;
+      margin: 2px 6px 16px 0px;
+    }
+    input[type="submit"] {
+     padding: 5px 10px 5px 10px;
+     color: black;
+     background: lightsteelblue;
+     border: none;
+     box-shadow: 1px 1px 1px #4C6E91;
+    }
+    input[type="submit"]:hover{
+     background: steelblue;
+    }
+   </style>
   </head>
   <body>
-    <h1>Headlines</h1>
-    <!-- Weather details-->
-    <h2>Current weather</h2>
-    <form class="" action="/" method="post">
-      <input type="text" name="city" value="" placeholder="Choose the city">
-      <input type="submit" name="submit" value="submit">
-    </form>
-    <p>City: <b>{{weather.city}},{{weather.country}}</b></p>
-    <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
-    <!-- News Headlines -->
-    <h1>What's going on the world?</h1>
-    <form class="" action="/" method="post">
-      <input type="text" name="publisher" value="" placeholder="search">
-      <input type="submit" name="submit" value="submit">
-    </form>
-    {% for  article in articles %}
-      <b><a href="{{article.link}}">{{article.title}}</a></b><br />
-      <i>{{article.published}}</i><br />
-      <p>{{article.summary}}</p>
+    <div id="header">
+      <div class="inner-header">
+        <h1>Headlines</h1>
+        <p>
+          Headlines. Currency . Weather
+        </p>
+      </div>
       <hr />
-    {% endfor %}
+    </div>
+
+    <!-- Weather details-->
+    <div id = "main">
+      <h2>Current weather</h2>
+      <form class="" action="/" method="post">
+        <input type="text" name="city" value="" placeholder="Choose the city">
+        <input type="submit" name="submit" value="submit">
+      </form>
+      <p>City: <b>{{weather.city}},{{weather.country}}</b></p>
+      <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
+      <!-- News Headlines -->
+      <h1>What's going on the world?</h1>
+      <form class="" action="/" method="post">
+        <input type="text" name="publisher" value="" placeholder="search">
+        <input type="submit" name="submit" value="submit">
+      </form>
+      {% for  article in articles %}
+        <b><a href="{{article.link}}">{{article.title}}</a></b><br />
+        <i>{{article.published}}</i><br />
+        <p>{{article.summary}}</p>
+        <hr />
+      {% endfor %}
+  </div>
   </body>
 </html>
